@@ -10,7 +10,7 @@ const Home = () => {
   const addTodo = () => {
     if (todo.trim()) {
       setTodos([...todos, todo]);
-      setTodo("");
+      setTodo("");  // Resetea el campo donde se ingresan los valores en el input
     }
   };
 
@@ -34,26 +34,14 @@ const Home = () => {
           />
         </div>
         <ul className="todo-list">
-          {todos.length === 0 ? (
-            null
-          ) : (
-            todos.map((item, index) => (
-              <li 
-                key={index} 
-                className="todo-item"
-                onMouseEnter={(e) => e.currentTarget.querySelector('.delete-icon').style.display = 'inline'}
-                onMouseLeave={(e) => e.currentTarget.querySelector('.delete-icon').style.display = 'none'}
-              >
-                {item}
-                <span 
-                  className="delete-icon" 
-                  onClick={() => removeTodo(index)}
-                >
-                  <i class="bi bi-x-lg"></i>
-                </span>
-              </li>
-            ))
-          )}
+          {todos.map((item, index) => (
+            <li key={index} className="todo-item">
+              {item}
+              <span className="delete-icon" onClick={() => removeTodo(index)}>
+                <i className="bi bi-x-lg"></i>
+              </span>
+            </li>
+          ))}
         </ul>
         <p className="todo-count">{todos.length} Item left</p>
       </div>
